@@ -1,0 +1,299 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>NobleCount Plugin Demo [Minimized]</title>
+
+		<script src="js/jquery-1.4.2.js" type="text/javascript"></script>  
+		<script src="js/jquery.NobleCount.min.js" type="text/javascript"></script>  
+	
+		<script type="text/javascript">  
+			$(document).ready(function () {
+				$('#test1').NobleCount('#count1');
+				$('#test2').NobleCount('#count2',{
+					on_negative: 'go_red'
+				});
+				$('#test3').NobleCount('#count3',{
+					on_negative: 'go_red',
+					on_positive: 'go_green'
+				});
+				$('#test4').NobleCount('#count4',{
+					on_negative: 'go_red',
+					on_positive: 'go_green',
+					max_chars: 250
+				});
+				$('#test5').NobleCount('#count5',{
+					on_negative: 'go_red',
+					on_positive: 'go_green'
+				});
+				$('#test6').NobleCount('#count6',{
+					on_negative: 'go_red',
+					on_positive: 'go_green',
+					max_chars: 25
+				});
+				$('#test7').NobleCount('#count7',{
+					on_negative: 'go_red',
+					on_positive: 'go_green',
+					on_update: function(t_obj, char_area, c_settings, char_rem){
+						if (char_rem < 0) {
+							$(t_obj).css('font-weight', 'bold');
+							$(t_obj).css('color','red');
+						} else {
+							$(t_obj).css('font-weight', 'normal');
+							$(t_obj).css('color','black');
+						}
+					},
+					max_chars: 25,
+					cloak: true
+				});
+				$('#test8').NobleCount('#count8',{
+					on_negative: 'go_red',
+					on_positive: 'go_green',
+					max_chars: 25,
+					on_update: function(t_obj, char_area, c_settings, char_rem){
+						if ((char_rem % 10) == 0) {
+							char_area.css('font-weight', 'bold');
+							char_area.css('font-size', '300%');
+						} else {
+							char_area.css('font-weight', 'normal');
+							char_area.css('font-size', '100%');
+						}
+					}
+				});
+				$('#test9').NobleCount('#count9',{
+					max_chars: 25,
+					on_positive: function(t_obj, char_area, c_settings, char_rem){
+						$(t_obj).css('border','1px solid black');
+					},
+					on_negative: function(t_obj, char_area, c_settings, char_rem){
+						$(t_obj).css('border','5px solid red');
+					}
+				});
+				$('#test10').NobleCount('#count10',{
+					on_negative: 'go_red',
+					max_chars: 25,
+					on_positive: function(t_obj, char_area, c_settings, char_rem){
+						$(t_obj).css('border','1px solid black');
+					}
+				});
+				$('#test11').NobleCount('#count11',{
+					max_chars: 25,
+					on_negative: function(t_obj, char_area, c_settings, char_rem){
+						alert('you are so negative!');
+					},
+					cloak: true
+				});
+				$('#test12').NobleCount('#count12',{
+					max_chars: 25,
+					on_negative: 'go_red',
+					on_positive: 'go_green'
+				});
+				$('#test13').NobleCount('#count13',{
+					max_chars: 25,
+					on_negative: 'go_red',
+					on_positive: 'go_green',
+					block_negative: true
+				});
+				$('#test14').NobleCount('#count14',{
+					max_chars: 25,
+					on_negative: 'go_red',
+					on_positive: 'go_green',
+					block_negative: true
+				});
+				$('#test15').NobleCount('#count15',{
+					on_negative: 'go_red',
+					on_positive: 'go_green',
+					max_chars: 25,
+					cloak: true,
+					in_dom: true
+				});
+
+
+			});
+		</script>
+		<style>
+			.go_red {
+				color:red;
+				}
+				
+			.go_green {
+				color:green;
+				}
+		
+		</style>
+	</head>
+	<body>
+<pre>
+$('#test1').NobleCount('#count1');
+</pre>
+		<textarea id='test1'></textarea>
+		<br><span id='count1'></span> characters remaining remaining
+		<br><hr>
+<pre>
+$('#test2').NobleCount('#count2',{
+	on_negative: 'go_red'
+});</pre>
+		<textarea id='test2'></textarea>
+		<br><span id='count2'></span> characters remaining remaining
+		<br><hr>
+<pre>
+$('#test3').NobleCount('#count3',{
+	on_negative: 'go_red',
+	on_positive: 'go_green'
+});
+</pre>
+		<textarea id='test3'></textarea>
+		<br><span id='count3'></span> characters remaining remaining
+		<br><hr>
+<pre>
+$('#test4').NobleCount('#count4',{
+	on_negative: 'go_red',
+	on_positive: 'go_green',
+	max_chars: 250
+});
+</pre>
+		<textarea id='test4'></textarea>
+		<br><span id='count4'></span> characters remaining remaining
+		<br><hr>
+<pre>
+$('#test5').NobleCount('#count5',{
+	on_negative: 'go_red',
+	on_positive: 'go_green'
+});
+</pre>
+		<textarea id='test5'></textarea>
+		<br><span id='count5'>80</span> characters remaining remaining
+		<br><hr>
+<pre>
+$('#test6').NobleCount('#count6',{
+	on_negative: 'go_red',
+	on_positive: 'go_green',
+	max_chars: 25
+});
+</pre>
+		<textarea id='test6'></textarea>
+		<br><span id='count6'>80</span> characters remaining remaining
+		<br><hr>
+<pre>
+$('#test7').NobleCount('#count7',{
+	on_negative: 'go_red',
+	on_positive: 'go_green',
+	on_update: function(t_obj, char_area, c_settings, char_rem){
+		if (char_rem < 0) {
+			$(t_obj).css('font-weight', 'bold');
+			$(t_obj).css('color','red');
+		} else {
+			$(t_obj).css('font-weight', 'normal');
+			$(t_obj).css('color','black');
+		}
+	},
+	max_chars: 25,
+	cloak: true
+});
+</pre>
+		<textarea id='test7'></textarea>
+		<br><span id='count7'></span> characters remaining remaining
+		<br><hr>
+<pre>
+$('#test8').NobleCount('#count8',{
+	on_negative: 'go_red',
+	on_positive: 'go_green',
+	max_chars: 25,
+	on_update: function(t_obj, char_area, c_settings, char_rem){
+		if ((char_rem % 10) == 0) {
+			char_area.css('font-weight', 'bold');
+			char_area.css('font-size', '300%');
+		} else {
+			char_area.css('font-weight', 'normal');
+			char_area.css('font-size', '100%');
+		}
+	}
+});
+</pre>
+		<textarea id='test8'></textarea>
+		<br><span id='count8'></span> characters remaining remaining
+		<br><hr>
+<pre>
+$('#test9').NobleCount('#count9',{
+	max_chars: 25,
+	on_positive: function(t_obj, char_area, c_settings, char_rem){
+		$(t_obj).css('border','1px solid black');
+	},
+	on_negative: function(t_obj, char_area, c_settings, char_rem){
+		$(t_obj).css('border','5px solid red');
+	}
+});
+</pre>
+		<textarea id='test9'></textarea>
+		<br><span id='count9'></span> characters remaining remaining
+		<br><hr>
+<pre>
+$('#test10').NobleCount('#count10',{
+	on_negative: 'go_red',
+	max_chars: 25,
+	on_positive: function(t_obj, char_area, c_settings, char_rem){
+		$(t_obj).css('border','1px solid black');
+	}
+});
+</pre>
+		<textarea id='test10'></textarea>
+		<br><span id='count10'></span> characters remaining remaining
+		<br><hr>
+<pre>
+$('#test11').NobleCount('#count11',{
+	max_chars: 25,
+	on_negative: function(t_obj, char_area, c_settings, char_rem){
+		alert('you are so negative!');
+	},
+	cloak: true
+});
+</pre>
+		<textarea id='test11'></textarea>
+		<br><span id='count11'></span> characters remaining remaining
+		<br><hr>
+<pre>
+$('#test12').NobleCount('#count12',{
+	max_chars: 25,
+	on_negative: 'go_red',
+	on_positive: 'go_green'
+});
+</pre>
+		<form><input type='text' id='test12'></textarea></form>
+		<br><span id='count12'></span> characters remaining remaining
+		<br><hr>
+<pre>
+$('#test13').NobleCount('#count13',{
+	max_chars: 25,
+	on_negative: 'go_red',
+	on_positive: 'go_green',
+	block_negative: true
+});
+</pre>
+		<textarea id='test13'></textarea>
+		<br><span id='count13'></span> characters remaining remaining
+		<br><hr>
+<pre>
+$('#test14').NobleCount('#count14',{
+	max_chars: 25,
+	on_negative: 'go_red',
+	on_positive: 'go_green',
+	block_negative: true
+});
+</pre>
+		<form><input type='text' id='test14'></textarea></form>
+		<br><span id='count14'></span> characters remaining remaining
+		<br><hr>
+<pre>
+$('#test15').NobleCount('#count15',{
+	on_negative: 'go_red',
+	on_positive: 'go_green',
+	max_chars: 25,
+	cloak: true,
+	in_dom: true
+});
+</pre>
+		<textarea id='test15'></textarea>
+		<br><span id='count15'></span> characters remaining remaining
+		<br>
+	</body>
+</html>
